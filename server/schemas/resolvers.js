@@ -5,7 +5,7 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).select("-__v -password");
       }
       throw AuthenticationError;
     },
@@ -15,7 +15,7 @@ const resolvers = {
     login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
 
-        if(!profile){
+        if(!user){
             throw AuthenticationError;
         }
         

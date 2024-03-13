@@ -28,10 +28,10 @@ const SearchBooks = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("are we getting here?");
+    //console.log("are we getting here?");
 
     if (!searchInput) {
-      console.log('Are we here?');
+     // console.log('Are we here?');
       return false;
     }
 
@@ -73,14 +73,13 @@ const SearchBooks = () => {
     }
 
     try {
-      //const response = await saveBook(bookToSave, token);
       await saveBook({
         variables: { input: bookToSave }
       });
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-      saveBookIds(savedBookIds);
+      //saveBookIds(savedBookIds);
     } catch (err) {
       console.error(err);
     }
@@ -156,7 +155,6 @@ const SearchBooks = () => {
             );
           })}
         </Row>
-        {error && <div>Uh oh! Something went wrong finding your books!</div>}
       </Container>
     </>
   );

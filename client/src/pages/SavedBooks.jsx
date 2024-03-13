@@ -56,7 +56,7 @@ const SavedBooks = () => {
     }
 
     try {
-      await removeBook({
+       await removeBook({
         variables: { bookId },
       });
 
@@ -95,7 +95,7 @@ const SavedBooks = () => {
         <h2 className="pt-5">
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? "book" : "books"
+              userData.savedBooks.length === 1 ? "book" : "books"
               }:`
             : "You have no saved books!"}
         </h2>
@@ -128,7 +128,6 @@ const SavedBooks = () => {
             );
           })}
         </Row>
-        {error && <div>Uh oh! Something went wrong finding your books!</div>}
       </Container>
     </>
   );
