@@ -5,6 +5,7 @@ const path = require("path");
 // Import ApolloServer class
 const { ApolloServer } = require("@apollo/server");
 const { authMiddleware } = require("./utils/auth");
+const { expressMiddleware } = require('@apollo/server/express4');
 
 // Import the parts of a GraphQL schema
 const { typeDefs, resolvers } = require("./schemas");
@@ -21,7 +22,8 @@ const server = new ApolloServer({
 //app.use(routes);
 const startApolloServer = async () => {
   await server.start();
-  server.applyMiddleware({ app });
+
+  //server.applyMiddleware({ app });
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
