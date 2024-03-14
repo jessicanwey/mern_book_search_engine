@@ -1,11 +1,15 @@
-const User = require("../models");
+const { User, Book } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).select("-__v -password");
+        const userData = await User.findOne({ _id: context.user._id })
+        .select("-__v -password")
+        .populate("book");
+
+        return userData;
       }
       throw AuthenticationError;
     },
@@ -28,7 +32,8 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
     },
-    addUser: async (parent,args) => {
+    addUser: async (parent, args) => {
+        console.log("WTF is happening?" + args);
         const user = await User.create(args);
         const token = signToken(user);
 
@@ -46,11 +51,13 @@ const resolvers = {
     },
     removeBook: async (parent, { bookId }, context) => {
         if(context.user){
-            return User.findOneAndUpdate(
+            const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id },
                 { $pull: { savedBooks: { bookId }}},
                 { new: true }
             );
+
+            return updatedUser;
         }
         throw AuthenticationError;
     },
