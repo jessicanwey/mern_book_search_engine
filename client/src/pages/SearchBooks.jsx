@@ -31,7 +31,7 @@ const SearchBooks = () => {
     //console.log("are we getting here?");
 
     if (!searchInput) {
-     // console.log('Are we here?');
+      // console.log('Are we here?');
       return false;
     }
 
@@ -59,12 +59,10 @@ const SearchBooks = () => {
     }
   };
 
-
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -73,13 +71,15 @@ const SearchBooks = () => {
     }
 
     try {
-      await saveBook({
-        variables: { input: bookToSave }
+      console.log("WHYYYY");
+      const { data } = await saveBook({
+        variables: { input: bookToSave },
       });
 
+      console.log(data);
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-      //saveBookIds(savedBookIds);
+      saveBookIds(savedBookIds);
     } catch (err) {
       console.error(err);
     }
