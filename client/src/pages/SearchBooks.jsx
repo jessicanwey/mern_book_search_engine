@@ -68,9 +68,9 @@ const SearchBooks = () => {
     }
 
     try {
-      console.log("WHYYYY");
+      console.log("WHYYYY " + bookToSave.title + " " + bookToSave.authors);
       const { data } = await saveBook({
-        variables: { input: { ...bookToSave } },
+        variables: { input: { ...bookToSave }  },
       });
 
       console.log(data);

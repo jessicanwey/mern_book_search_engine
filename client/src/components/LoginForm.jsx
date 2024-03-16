@@ -37,12 +37,13 @@ const LoginForm = () => {
     }
 
     try {
+      console.log("USER INFO AT LOGIN " + userFormData.email + " " + userFormData.password);
       const { data } = await loginUser({
         variables: { ...userFormData },
       });
 
       console.log(data);
-      Auth.login(data.login.token);
+      Auth.login(data.loginUser.token);
     } catch (err) {
       console.error(err);
     }
