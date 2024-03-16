@@ -4,7 +4,7 @@ import { Container, Col, Form, Button, Card, Row } from "react-bootstrap";
 import Auth from "../utils/auth";
 import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { SAVE_BOOK } from "../utils/mutations";
 
 const SearchBooks = () => {
@@ -28,10 +28,7 @@ const SearchBooks = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    //console.log("are we getting here?");
-
     if (!searchInput) {
-      // console.log('Are we here?');
       return false;
     }
 
@@ -73,7 +70,7 @@ const SearchBooks = () => {
     try {
       console.log("WHYYYY");
       const { data } = await saveBook({
-        variables: { input: bookToSave },
+        variables: { input: { ...bookToSave } },
       });
 
       console.log(data);

@@ -18,11 +18,8 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-//app.use(routes);
 const startApolloServer = async () => {
   await server.start();
-
-  //server.applyMiddleware({ app });
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
