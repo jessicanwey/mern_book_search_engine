@@ -39,11 +39,11 @@ const resolvers = {
       return { token, user };
     },
     saveBook: async (parent, { input }, context) => {
-     // console.error("INSIDE SAVE BOOK IN RESOLVERS " + input.bookId + "USER " + context.user);
+      console.error("INSIDE SAVE BOOK IN RESOLVERS " + input.bookId + "USER " + context.user);
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: input } },
+          { $push: { savedBooks: input } },
           { new: true }
         );
 
@@ -53,7 +53,7 @@ const resolvers = {
     },
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $pull: { savedBooks: { bookId } } },
           { new: true }
