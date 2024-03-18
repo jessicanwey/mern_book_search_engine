@@ -10,12 +10,9 @@ import { REMOVE_BOOK } from "../utils/mutations";
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
 
-  console.log("INSIDE SAVED BOOKS DATA: " + data);
-
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
   const userData = data?.me || {};
- // console.log("USER DATA " + userData + " SAVED BOOKS " + userData.savedBooks);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -73,7 +70,7 @@ const SavedBooks = () => {
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <p className="small">Authors: {book.authors}</p>
-                    <Card.Text>{book.description}</Card.Text>
+                    <Card.Text>{book.description} AND ID {book.bookId}</Card.Text>
                     <Button
                       className="btn-block btn-danger"
                       onClick={() => handleDeleteBook(book.bookId)}
