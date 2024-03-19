@@ -17,6 +17,9 @@ This project has a fully functioning Google Books API search engine with a Graph
   ## Usage
 You will need to run ``` pnpm run develop ``` in your terminal.
 
+<img width="1440" alt="Screenshot 2024-03-18 at 10 46 45 PM" src="https://github.com/jessicanwey/mern_book_search_engine/assets/145372607/08b2c9c3-0112-4ea5-89ef-301ca5628693">
+
+
   ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br>
 This project is licensed under MIT, for more information please visit [this website](https://opensource.org/licenses/MIT)
