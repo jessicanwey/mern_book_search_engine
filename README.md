@@ -18,8 +18,8 @@ This project has a fully functioning Google Books API search engine with a Graph
 You will need to run ``` pnpm run develop ``` in your terminal.
 
   ## License
-  None  
-  Find out more about this license here: 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br>
+This project is licensed under MIT, for more information please visit [this website](https://opensource.org/licenses/MIT)
 
   ## Contributing
   Please follow this link for best practices for contributing to an open source project:
